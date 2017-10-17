@@ -18,7 +18,9 @@
 
 #define RX_PKT_PREALLOC_SIZE 0x20000
 
+__attribute__((visibility("default")))
 struct exa_socket *exa_socket_table;
+__attribute__((visibility("default")))
 size_t exa_socket_table_size;
 
 uint32_t exasock_poll_lock __attribute__((aligned (64)));

@@ -36,8 +36,11 @@
 static int                              exasock_fd;
 static struct exasock_kernel_info *     exasock_kernel_info;
 
+__attribute__((visibility("default")))
 unsigned int                            exa_dst_table_size;
+__attribute__((visibility("default")))
 struct exa_dst_entry *                  exa_dst_table;
+__attribute__((visibility("default")))
 uint8_t *                               exa_dst_used_flags;
 
 static void
@@ -141,6 +144,7 @@ exa_sys_dst_queue(in_addr_t dst_addr, in_addr_t src_addr, char *hdr,
     exasock_override_on();
 }
 
+__attribute__((visibility("default")))
 int
 exa_sys_dst_request(in_addr_t dst_addr, in_addr_t *src_addr)
 {

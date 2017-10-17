@@ -36,24 +36,7 @@
 #include <exanic/time.h>
 #include <exanic/ioctl.h>
 
-#include "kernel/api.h"
-#include "kernel/consts.h"
-#include "kernel/structs.h"
-#include "override.h"
-#include "lock.h"
-#include "rwlock.h"
-#include "structs.h"
-#include "exanic.h"
-#include "checksum.h"
-#include "ether.h"
-#include "ip.h"
-#include "udp.h"
-#include "tcp_buffer.h"
-#include "tcp.h"
-#include "sys.h"
-#include "dst.h"
-#include "udp_queue.h"
-#include "notify.h"
+#include "exanic_structs.h"
 
 #define MAX_HDR_LEN 128
 #define MAX_FRAME_LEN 1522
@@ -94,27 +77,6 @@ static uint32_t exanic_ip_ctx_lock __attribute__((aligned (64)));
 
 /* Tx lock protects the hardware tx buffer and associated structs */
 static uint32_t exanic_tx_lock __attribute__((aligned (64)));
-
-struct exanic_udp
-{
-    struct exa_eth_tx eth;
-    struct exa_ip_tx ip;
-    struct exa_udp_tx udp;
-    struct exa_dst dst;
-
-    struct exanic_ip *exanic_ctx;
-};
-
-struct exanic_tcp
-{
-    struct exa_eth_tx eth;
-    struct exa_ip_tx ip;
-    struct exa_tcp_conn tcp;
-    struct exa_dst dst;
-
-    struct exanic_ip *exanic_ctx;
-    struct exanic_tcp *next;
-};
 
 static inline void
 exa_get_system_time(struct exa_timestamp * restrict ts)
