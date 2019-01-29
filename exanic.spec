@@ -1,5 +1,5 @@
 Name:           exanic
-Version:        2.2.2-git
+Version:        2.2.2-defy
 Release:        1%{?dist}
 
 Summary:        ExaNIC drivers and software
